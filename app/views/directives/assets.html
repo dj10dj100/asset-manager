@@ -1,0 +1,24 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>AssetNumber</th>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Status</th>
+			<th>Location</th>
+			<th>Assigned To</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="item in data">
+			<td></td>
+			<td>{{ ::item.assetNumber }}</td>
+			<td>{{ ::item.title }}</td>
+			<td>{{ ::item.description }}</td>
+			<td>{{ ::item.status }}</td>
+			<td>{{ ::item.location }}</td>
+			<td>{{ ::item.assignedTo }}</td>
+		</tr>
+	</tbody>
+</table>
