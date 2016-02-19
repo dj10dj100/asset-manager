@@ -1,5 +1,5 @@
 'use strict';
-app.directive('assets', ()=> {
+app.directive('assets', ['api', ()=> {
     console.log('asset build');
     return {
         restrict : 'E',
@@ -8,4 +8,4 @@ app.directive('assets', ()=> {
         },
         templateUrl : 'views/directives/assets.html'
     }
-});
+}]);
