@@ -43,7 +43,9 @@
                     <input type="text" class="form-control" id="assignedTo" placeholder="Assigned to" ng-if="item.editing">
                 </td>
                 <td>
-                    <button type="button" class="btn btn-default" ng-click='item.editing = true'>Edit</button>
+                    <button type="button" class="btn btn-default" ng-if="!item.editing" ng-click='item.editing = true'>Edit</button>
+                    <button type="button" class="btn btn-success" ng-if="item.editing" ng-click='save(item)'>Save</button>
+                    <button type="button" class="btn btn-danger" ng-if="item.editing" ng-click='item.editing = false'>Cancel</button>
                 </td>
             </form>
         </tr>
