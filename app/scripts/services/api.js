@@ -1,24 +1,12 @@
 'use strict';
-app.service('api', ($http, Backand)=> {
+app.service('api', ($firebaseObject)=> {
 
-    var get = function(objects){
-
-        return $http({
-            method: 'GET',
-            url: Backand.getApiUrl() + '/1/objects/' + name,
-            params: {
-              pageSize: 20,
-              pageNumber: 1
-            }
-        });
-    };
-
-    var put = function(endpoint, data){
-
+    var DB = ()=> {
+        var DB = new Firebase('https://blinding-fire-7636.firebaseio.com/');
+        return $firebaseObject(DB);
     };
 
     return {
-        get : get,
-        put : put
+        DB : DB
     }
 });

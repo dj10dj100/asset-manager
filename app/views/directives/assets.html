@@ -8,17 +8,44 @@
 			<th>Status</th>
 			<th>Location</th>
 			<th>Assigned To</th>
+            <th></th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-repeat="item in data">
-			<td></td>
-			<td>{{ ::item.assetNumber }}</td>
-			<td>{{ ::item.title }}</td>
-			<td>{{ ::item.description }}</td>
-			<td>{{ ::item.status }}</td>
-			<td>{{ ::item.location }}</td>
-			<td>{{ ::item.assignedTo }}</td>
-		</tr>
+            <form name="addItem">
+                <td></td>
+                <td>
+                    {{ ::item.assetNumber }}
+                    <input type="text" class="form-control" id="assetNumber" placeholder="Asset No." ng-if="item.editing">
+                </td>
+                <td>
+                    {{ ::item.title }}
+                    <input type="text" class="form-control" id="title" placeholder="Title" ng-if="item.editing">
+                </td>
+                <td>
+                    {{ ::item.description }}
+                    <textarea class="form-control" id="description" placeholder="Description" ng-if="item.editing"></textarea>
+                </td>
+                <td>
+                    {{ ::item.status }}
+                    <select class="form-control" ng-if="item.editing">
+                        <option value="true" >In use (booked)</option>
+                        <option value="false" >Not In use (booked)</option>
+                    </select>
+                </td>
+                <td>
+                    {{ ::item.location }}
+                    <input type="text" class="form-control" id="location" placeholder="Location." ng-if="item.editing">
+                </td>
+                <td>
+                    {{ ::item.assignedTo }}
+                    <input type="text" class="form-control" id="assignedTo" placeholder="Assigned to" ng-if="item.editing">
+                </td>
+                <td>
+                    <button type="button" class="btn btn-default" ng-click='item.editing = true'>Edit</button>
+                </td>
+            </form>
+        </tr>
 	</tbody>
 </table>

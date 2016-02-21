@@ -8,10 +8,8 @@ app.directive('assets', ['api', (api)=> {
         },
         templateUrl : 'views/directives/assets.html',
         controller : function($scope){
-            api.get('assets').then((data) => {
-                console.log(data);
-            })
-
+            $scope.db = api.DB();
+            console.log($scope.db);
         },
     }
 }]);
