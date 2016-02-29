@@ -1,51 +1,53 @@
 <table class="table">
 	<thead>
-		<tr>
-			<th>#</th>
-			<th>AssetNumber</th>
-			<th>Title</th>
-			<th>Description</th>
-			<th>Status</th>
-			<th>Location</th>
-			<th>Assigned To</th>
-            <th></th>
-		</tr>
+		<th>#</th>
+		<th>AssetNumber</th>
+		<th>Device Title</th>
+		<th>Status</th>
+		<th>Assigned To</th>
+        <th></th>
 	</thead>
 	<tbody>
-		<tr ng-repeat="item in data">
-            <form name="addItem">
-                <td></td>
+		<tr ng-repeat="item in assets">
+            <td>{{ ::item.$id}}</td>
+            <td>
+                {{ ::item.assetNumber }}
+            </td>
+            <td>
+                {{ ::item.title }}
+            </td>
+            <td>
+                {{ ::item.status || 'false' }}
+            </td>
+            <td>
+                {{ ::item.assignedTo }}
+            </td>
+            <td>
+                <button type="button" class="btn btn-default" ng-click='edit(item)'>
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+                <button type="button" class="btn btn-danger" ng-if="!editing" ng-click='delete(item)'><span class="glyphicon glyphicon-trash"></span></button>
+            </td>
+        </tr>
+        <tr>
+            <form name="addItem" ng-model="asset">
+                <td>Add New :</td>
                 <td>
-                    {{ ::item.assetNumber }}
-                    <input type="text" class="form-control" id="assetNumber" placeholder="Asset No." ng-if="item.editing">
+                    <input type="text" class="form-control" id="assetNumber" placeholder="Asset No." ng-model="asset.assetNumber">
                 </td>
                 <td>
-                    {{ ::item.title }}
-                    <input type="text" class="form-control" id="title" placeholder="Title" ng-if="item.editing">
+                    <input type="text" class="form-control" id="assetNumber" placeholder="title" ng-model="asset.title">
                 </td>
                 <td>
-                    {{ ::item.description }}
-                    <textarea class="form-control" id="description" placeholder="Description" ng-if="item.editing"></textarea>
+                    Checked out?
+                    <input type="checkbox" ng-model="asset.status" value="true">
                 </td>
                 <td>
-                    {{ ::item.status }}
-                    <select class="form-control" ng-if="item.editing">
-                        <option value="true" >In use (booked)</option>
-                        <option value="false" >Not In use (booked)</option>
-                    </select>
+                    <input type="text" class="form-control" id="assignedTo" placeholder="Assigned to" ng-model="asset.assignedTo">
                 </td>
                 <td>
-                    {{ ::item.location }}
-                    <input type="text" class="form-control" id="location" placeholder="Location." ng-if="item.editing">
-                </td>
-                <td>
-                    {{ ::item.assignedTo }}
-                    <input type="text" class="form-control" id="assignedTo" placeholder="Assigned to" ng-if="item.editing">
-                </td>
-                <td>
-                    <button type="button" class="btn btn-default" ng-if="!item.editing" ng-click='item.editing = true'>Edit</button>
-                    <button type="button" class="btn btn-success" ng-if="item.editing" ng-click='save(item)'>Save</button>
-                    <button type="button" class="btn btn-danger" ng-if="item.editing" ng-click='item.editing = false'>Cancel</button>
+                    <button type="button" class="btn btn-success" ng-click='save(asset)'><span class="glyphicon glyphicon-ok"></span></button>
+                    <button type="button" class="btn btn-primary" ng-if="editing" ng-click='cancel()'><span class="glyphicon glyphicon-trash"></span></button>
                 </td>
             </form>
         </tr>

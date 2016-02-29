@@ -1,9 +1,9 @@
 'use strict';
-app.service('api', ($firebaseObject)=> {
+app.service('api', ($firebaseArray) => {
 
     var DB = ()=> {
-        var DB = new Firebase('https://blinding-fire-7636.firebaseio.com/');
-        return $firebaseObject(DB);
+        var DB = new Firebase('https://asset-manager-365.firebaseio.com/assets');
+        return $firebaseArray(DB);
     };
 
     return {
